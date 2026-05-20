@@ -60,10 +60,10 @@ def _is_reddit_thread_url(url: str) -> bool:
         return False
 
     parsed = urlparse(url)
-    host = parsed.netloc.lower()
+    host = (parsed.hostname or "").lower().rstrip(".")
     path = parsed.path.lower()
 
-    is_reddit_host = "reddit.com" in host
+    is_reddit_host = host == "reddit.com" or host.endswith(".reddit.com")
     is_thread_path = "/r/" in path and "/comments/" in path
     return is_reddit_host and is_thread_path
 
