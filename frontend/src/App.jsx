@@ -7,6 +7,7 @@ const LazyBackgroundOrb = lazy(() => import('./components/BackgroundOrb'))
 import { ContinuousPaginationDemo } from './components/ContinuousPagination'
 import { AiInput } from './components/AiInput'
 import { ProductCarousel } from './components/ProductCarousel'
+import { MarkdownExportButton } from './components/MarkdownExportButton'
 
 const PERSONAS = [
   { id: "default",    label: "Default",     desc: "Raw Groq"            },
@@ -418,9 +419,34 @@ function ResultsPanel({ mode, results, loading, onOpenLink, query }) {
   if (loading) return <LoadingSkeleton />
   if (!results) return null
   if (mode === 'seo') return <SEOResults results={results} onOpenLink={onOpenLink} query={query} />
-  if (mode === 'ai') return <AIResults results={results} />
-  if (mode === 'community') return <Suspense fallback={<LoadingSkeleton />}><LazyCommunityResults results={results} onOpenLink={onOpenLink} /></Suspense>
+  if (mode === 'ai') {
+    return (
+      <ResultExportLayout mode={mode} query={query} results={results}>
+        <AIResults results={results} />
+      </ResultExportLayout>
+    )
+  }
+  if (mode === 'community') {
+    return (
+      <ResultExportLayout mode={mode} query={query} results={results}>
+        <Suspense fallback={<LoadingSkeleton />}>
+          <LazyCommunityResults results={results} onOpenLink={onOpenLink} />
+        </Suspense>
+      </ResultExportLayout>
+    )
+  }
   return null
+}
+
+function ResultExportLayout({ mode, query, results, children }) {
+  return (
+    <div className="space-y-4">
+      <div className="flex max-w-4xl justify-end">
+        <MarkdownExportButton mode={mode} query={query} results={results} />
+      </div>
+      {children}
+    </div>
+  )
 }
 
 function SEOResults({ results, onOpenLink, query = "" }) {
