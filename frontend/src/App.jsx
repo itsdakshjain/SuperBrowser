@@ -17,6 +17,19 @@ const PERSONAS = [
 ]
 
 const API_BASE = getApiBase()
+const THEME_STORAGE_KEY = 'superbrowser-theme'
+
+function getInitialTheme() {
+  const domTheme = document.documentElement.dataset.theme
+  if (domTheme === 'light' || domTheme === 'dark') return domTheme
+  try {
+    const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY)
+    if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  } catch {
+    return 'light'
+  }
+}
 
 function createNewTab(sessionId = null) {
   return {
@@ -61,6 +74,8 @@ const ChevronRightIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" f
 const RefreshIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
 const HomeIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
 const ChevronDownIcon = () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+const SunIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+const MoonIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z"/></svg>
 
 export default function App() {
   const [appSessionId] = useState(() => crypto.randomUUID())
@@ -75,6 +90,7 @@ export default function App() {
   const [showHistory, setShowHistory] = useState(false)
   const [showPricing, setShowPricing] = useState(false)
   const [persona, setPersona] = useState("default")
+  const [theme, setTheme] = useState(getInitialTheme)
   const [showContextInfo, setShowContextInfo] = useState(false)
   const [backendStatus, setBackendStatus] = useState(null)
   const [userRegion] = useState(() => {
@@ -92,6 +108,17 @@ export default function App() {
   const isBrowserTab = Boolean(activeTab?.browserUrl)
   // Only transition out of New Tab when a search is loading, finished, or has errored
   const isNewTab = !activeTab?.results && !activeTab?.loading && !activeTab?.error && !isBrowserTab
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+    } catch {}
+  }, [theme])
+
+  const toggleTheme = useCallback(() => {
+    setTheme(current => current === 'dark' ? 'light' : 'dark')
+  }, [])
 
   useEffect(() => {
     if (!window.superBrowserDesktop?.isElectron || !window.superBrowserDesktop?.backend?.getStatus) return
@@ -204,7 +231,7 @@ export default function App() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-transparent text-[var(--text-primary)] relative z-10">
       <Suspense fallback={null}>
-        <LazyBackgroundOrb isVisible={isNewTab} />
+        <LazyBackgroundOrb isVisible={isNewTab} theme={theme} />
       </Suspense>
 
       {/* Hand-drawn style Tab Bar */}
@@ -216,6 +243,8 @@ export default function App() {
         onAddTab={() => { setShowPricing(false); handleAddTab() }}
         onShowHistory={() => { setShowPricing(false); setShowHistory(true) }}
         onOpenPricing={() => { setShowHistory(false); setShowPricing(true) }}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* Main Content */}
@@ -223,19 +252,19 @@ export default function App() {
         {window.superBrowserDesktop?.isElectron && <BackendStatusBanner status={backendStatus} />}
 
         {isBrowserTab ? (
-          <div className="flex-1 min-h-0 bg-white">
+          <div className="flex-1 min-h-0 bg-[var(--bg-surface)]">
             <BrowserPanel url={activeTab.browserUrl} title={activeTab.browserTitle} onClose={() => updateTab(activeTabId, { browserUrl: "", browserTitle: "" })} />
           </div>
         ) : isNewTab ? (
           /* Hand-drawn Centered Landing Page */
           <div className="flex-1 flex flex-col items-center justify-center p-4 animate-fade-in-up">
             <div className="relative mb-12">
-              <div className="absolute inset-0 bg-white/70 blur-3xl -z-10 rounded-full scale-[1.3] pointer-events-none"></div>
+              <div className="absolute inset-0 blur-3xl -z-10 rounded-full scale-[1.3] pointer-events-none" style={{ background: 'var(--hero-glow)' }}></div>
               <h1 className="title-hero text-center select-none m-0">SUPER BROWSER</h1>
             </div>
             
             <div className="w-full max-w-2xl mb-8">
-              <div className="pill-search flex items-center px-6 py-4 w-full cursor-text relative bg-white/80 backdrop-blur-sm" onClick={() => document.getElementById('search-input-home')?.focus()}>
+              <div className="pill-search flex items-center px-6 py-4 w-full cursor-text relative backdrop-blur-sm" style={{ background: 'var(--surface-translucent)' }} onClick={() => document.getElementById('search-input-home')?.focus()}>
                 <button 
                   onClick={(e) => { e.stopPropagation(); handleSearch(activeTabId, persona) }} 
                   className="text-[var(--text-secondary)] hover:text-[var(--action-primary)] transition-colors shrink-0"
@@ -259,9 +288,9 @@ export default function App() {
           </div>
         ) : (
           /* Active Search View */
-          <div className="flex-1 flex flex-col min-h-0 bg-white shadow-xl relative z-10">
+          <div className="flex-1 flex flex-col min-h-0 bg-[var(--bg-surface)] shadow-xl relative z-10">
             {/* Minimalist Top Header */}
-            <div className="px-6 py-3 border-b border-[var(--border-color)] flex items-center gap-4 bg-white">
+            <div className="px-6 py-3 border-b border-[var(--border-color)] flex items-center gap-4 bg-[var(--bg-surface)]">
                {/* Browser Navigation Controls */}
                <div className="flex items-center gap-1">
                  <button onClick={() => {
@@ -272,16 +301,16 @@ export default function App() {
                    } else {
                      goHome();
                    }
-                 }} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Back">
+                 }} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)] transition-colors" title="Back">
                    <ChevronLeftIcon />
                  </button>
                  <button disabled className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] opacity-30 cursor-not-allowed transition-colors" title="Forward">
                    <ChevronRightIcon />
                  </button>
-                 <button onClick={() => { if (activeTab?.query) handleSearch(activeTabId, persona) }} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Reload">
+                 <button onClick={() => { if (activeTab?.query) handleSearch(activeTabId, persona) }} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)] transition-colors" title="Reload">
                    <RefreshIcon />
                  </button>
-                 <button onClick={goHome} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Home">
+                 <button onClick={goHome} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)] transition-colors" title="Home">
                    <HomeIcon />
                  </button>
                </div>
@@ -309,7 +338,7 @@ export default function App() {
             </div>
             
             {/* Content Area */}
-            <div className="flex-1 flex overflow-hidden bg-white">
+            <div className="flex-1 flex overflow-hidden bg-[var(--bg-surface)]">
                <div className="flex-1 overflow-auto p-6 md:p-10 max-w-5xl mx-auto">
                  {activeTab?.error && <div className="text-red-700 border border-red-200 bg-red-50 p-4 rounded-xl mb-6 text-sm max-w-4xl mx-auto">{activeTab.error}</div>}
                  
@@ -329,7 +358,7 @@ export default function App() {
                
                {/* History Panel Sidebar - Now accessed via browser menu */}
                {showHistory && (
-                 <div className="w-80 border-l border-[var(--border-color)] bg-white p-4 overflow-y-auto">
+                 <div className="w-80 border-l border-[var(--border-color)] bg-[var(--bg-surface)] p-4 overflow-y-auto">
                    <div className="flex items-center justify-between mb-4">
                      <h3 className="font-semibold text-[var(--text-primary)]">Tab History</h3>
                      <button onClick={() => setShowHistory(false)} className="p-1 rounded hover:bg-[var(--bg-hover)] text-[var(--text-tertiary)]"><XIcon /></button>
@@ -357,10 +386,11 @@ export default function App() {
 
 /* ── UI Components ── */
 
-function TabBar({ tabs, activeTabId, onTabClick, onCloseTab, onAddTab, onShowHistory, onOpenPricing }) {
+function TabBar({ tabs, activeTabId, onTabClick, onCloseTab, onAddTab, onShowHistory, onOpenPricing, theme, onToggleTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const nextTheme = theme === 'dark' ? 'light' : 'dark'
   return (
-    <div className="flex border-b border-[var(--border-color)] w-full bg-white select-none" style={{ height: '44px' }}>
+    <div className="flex border-b border-[var(--border-color)] w-full bg-[var(--bg-surface)] select-none" style={{ height: '44px' }}>
       <div className="flex-1 flex overflow-x-auto scrollbar-hide h-full">
         {tabs.map((tab, idx) => (
           <div key={tab.id} onClick={() => onTabClick(tab.id)}
@@ -368,7 +398,7 @@ function TabBar({ tabs, activeTabId, onTabClick, onCloseTab, onAddTab, onShowHis
             <span className="truncate text-[13px] flex-1">
               {tab.id === activeTabId ? `TAB ${idx + 1}` : (tab.title.length > 20 ? tab.title.slice(0, 20) + '…' : tab.title)}
             </span>
-            <button onClick={(e) => onCloseTab(tab.id, e)} className="w-5 h-5 flex items-center justify-center rounded hover:bg-black/5 opacity-0 group-hover:opacity-100 text-[var(--text-tertiary)]"><XIcon /></button>
+            <button onClick={(e) => onCloseTab(tab.id, e)} className="w-5 h-5 flex items-center justify-center rounded hover:bg-[var(--bg-hover)] opacity-0 group-hover:opacity-100 text-[var(--text-tertiary)]"><XIcon /></button>
           </div>
         ))}
         <button onClick={onAddTab} className="px-4 h-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] border-r border-[var(--border-color)] flex items-center justify-center transition-colors" title="New Tab (Ctrl+T)">
@@ -383,6 +413,16 @@ function TabBar({ tabs, activeTabId, onTabClick, onCloseTab, onAddTab, onShowHis
           BROWSER MENU
         </button>
         {isMenuOpen && <BrowserMenu onClose={() => setIsMenuOpen(false)} onAddTab={onAddTab} onShowHistory={onShowHistory} onOpenPricing={onOpenPricing} />}
+        <button
+          type="button"
+          onClick={onToggleTheme}
+          className="theme-toggle w-12 h-full flex items-center justify-center transition-colors"
+          aria-label={`Switch to ${nextTheme} mode`}
+          aria-pressed={theme === 'dark'}
+          title={`Switch to ${nextTheme} mode`}
+        >
+          {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        </button>
         <button
           onClick={() => { setIsMenuOpen(false); onOpenPricing() }}
           className="px-4 h-full text-[12px] font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-colors border-l border-[var(--border-color)]"
@@ -436,8 +476,8 @@ function SEOResults({ results, onOpenLink, query = "" }) {
       {items.map((r, i) => (
         <div key={i} className={`pb-6 mb-6 border-b border-[var(--border-color)] last:border-0 animate-fade-in-up stagger-${Math.min(i + 1, 3)}`}>
           <div className="flex-1 min-w-0">
-            <a href={r.url} onClick={(e) => { e.preventDefault(); onOpenLink?.(r.url, r.title || "Search Result") }} className="font-medium text-[22px] block mb-1 text-[#1a0dab] hover:underline truncate hover:text-[#2b6ce0] transition-colors">{r.title}</a>
-            <p className="text-[13px] truncate mb-3 text-[#006621]">{r.url}</p>
+            <a href={r.url} onClick={(e) => { e.preventDefault(); onOpenLink?.(r.url, r.title || "Search Result") }} className="font-medium text-[22px] block mb-1 text-[var(--link-primary)] hover:underline truncate hover:text-[var(--link-hover)] transition-colors">{r.title}</a>
+            <p className="text-[13px] truncate mb-3 text-[var(--link-url)]">{r.url}</p>
             <p className="text-[15px] text-[var(--text-secondary)] line-clamp-3 leading-relaxed">{r.snippet || r.description}</p>
           </div>
         </div>
@@ -454,7 +494,7 @@ function AIResults({ results }) {
   return (
     <div className="max-w-3xl space-y-6 animate-fade-in-up">
       {answer ? (
-        <div className="p-8 bg-white border border-[var(--border-color)] rounded-3xl" style={{ borderTop: `4px solid ${isLiveData ? '#10b981' : 'var(--action-primary)'}` }}>
+        <div className="p-8 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-3xl" style={{ borderTop: `4px solid ${isLiveData ? '#10b981' : 'var(--action-primary)'}` }}>
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-medium flex items-center gap-3"><BrainIcon /> AI Answer</h3>
             {isLiveData && (
@@ -501,7 +541,7 @@ function PersonaDropdown({ value, onChange, personas }) {
         <ChevronDownIcon />
       </button>
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-[var(--border-color)] rounded-xl shadow-lg py-2 z-50 animate-fade-in-up">
+        <div className="absolute top-full left-0 mt-2 w-56 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-xl shadow-lg py-2 z-50 animate-fade-in-up">
           {personas.map(p => (
             <button
               key={p.id}
@@ -604,11 +644,11 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fade-in-up">
-      <div className="w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl scale-100 flex flex-col">
-        <div className="p-5 border-b border-[var(--border-color)] flex justify-between items-center bg-white relative z-20">
+      <div className="w-full max-w-4xl bg-[var(--bg-surface)] rounded-2xl overflow-hidden shadow-2xl scale-100 flex flex-col">
+        <div className="p-5 border-b border-[var(--border-color)] flex justify-between items-center bg-[var(--bg-surface)] relative z-20">
           <div className="flex items-center gap-3">
             <h3 className="text-lg font-medium tracking-tight">Super AI Context Session</h3>
-            <span className="text-[11px] bg-black text-white px-2 py-0.5 rounded-full">BETA</span>
+            <span className="text-[11px] bg-[var(--text-primary)] text-[var(--text-inverse)] px-2 py-0.5 rounded-full">BETA</span>
           </div>
           <div className="flex items-center gap-3">
             {/* Model Selector */}
@@ -626,7 +666,7 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
               </button>
               
               {showModelSelector && (
-                <div className="absolute right-0 top-full mt-2 w-72 bg-white border border-[var(--border-color)] rounded-xl shadow-xl z-50 overflow-hidden animate-fade-in-up">
+                <div className="absolute right-0 top-full mt-2 w-72 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-xl shadow-xl z-50 overflow-hidden animate-fade-in-up">
                   <div className="p-3 border-b border-[var(--border-color)] bg-[var(--bg-elevated)]">
                     <span className="text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wide">Select AI Model</span>
                   </div>
@@ -676,12 +716,12 @@ function BrowserPanel({ url, title, onClose }) {
   const reloadWebview = () => document.getElementById(`webview-${url}`)?.reload()
 
   return (
-    <div className="h-full flex flex-col bg-white animate-fade-in-up">
+    <div className="h-full flex flex-col bg-[var(--bg-surface)] animate-fade-in-up">
       <div className="px-4 py-2 border-b border-[var(--border-color)] flex items-center gap-3">
         <div className="flex items-center gap-1">
-          <button onClick={onClose} className="p-1.5 rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Back"><ChevronLeftIcon /></button>
+          <button onClick={onClose} className="p-1.5 rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)] transition-colors" title="Back"><ChevronLeftIcon /></button>
           <button disabled className="p-1.5 rounded-full text-[var(--text-secondary)] opacity-30 cursor-not-allowed transition-colors" title="Forward"><ChevronRightIcon /></button>
-          <button onClick={reloadWebview} className="p-1.5 rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Reload"><RefreshIcon /></button>
+          <button onClick={reloadWebview} className="p-1.5 rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)] transition-colors" title="Reload"><RefreshIcon /></button>
         </div>
         <input value={url} readOnly className="flex-1 bg-[var(--bg-elevated)] border border-[var(--border-color)] text-sm rounded-lg px-3 py-1.5 outline-none text-[var(--text-secondary)]" />
       </div>
@@ -739,7 +779,7 @@ function PricingPage({ onClose }) {
       onClick={onClose}
     >
       <div className="w-full max-w-6xl max-h-[90vh] overflow-auto rounded-3xl border border-[var(--border-color)] bg-[var(--bg-elevated)] p-4 md:p-8 shadow-2xl" onClick={(e) => e.stopPropagation()}>
-        <div className="card-minimal bg-white p-5 md:p-8 mb-5 md:mb-7">
+        <div className="card-minimal bg-[var(--bg-surface)] p-5 md:p-8 mb-5 md:mb-7">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
               <p className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[var(--text-tertiary)] mb-2">Plans</p>
@@ -760,7 +800,7 @@ function PricingPage({ onClose }) {
             ))}
           </div>
 
-          <div className="pricing-shell card-minimal bg-white overflow-hidden">
+          <div className="pricing-shell card-minimal bg-[var(--bg-surface)] overflow-hidden">
             <div className="overflow-x-auto">
               <table className="pricing-table w-full min-w-[760px] border-collapse">
                 <caption className="pricing-sr-only">Super Browser pricing plan</caption>
@@ -863,21 +903,21 @@ function BrowserMenu({ onClose, onAddTab, onShowHistory, onOpenPricing }) {
     <div className="w-full flex items-center px-4 py-1.5 text-[13px] hover:bg-[var(--bg-hover)] transition-colors">
       <span className="text-[var(--text-tertiary)] mr-3">{icons.zoom}</span>
       <span className="text-[var(--text-primary)] flex-1 text-left">Zoom</span>
-      <div className="flex items-center ml-4 border border-[var(--border-color)] rounded-md overflow-hidden bg-white">
+      <div className="flex items-center ml-4 border border-[var(--border-color)] rounded-md overflow-hidden bg-[var(--bg-surface)]">
         <button onClick={() => setZoomLevel(z => Math.max(25, z - 10))} className="px-2 hover:bg-[var(--bg-hover)] text-[16px] leading-none pb-0.5 text-[var(--text-secondary)]">−</button>
         <div className="w-[1px] h-4 bg-[var(--border-color)]"></div>
         <span className="px-2 text-[12px] font-medium text-[var(--text-primary)] min-w-[40px] text-center">{zoomLevel}%</span>
         <div className="w-[1px] h-4 bg-[var(--border-color)]"></div>
         <button onClick={() => setZoomLevel(z => Math.min(200, z + 10))} className="px-2 hover:bg-[var(--bg-hover)] text-[16px] leading-none pb-0.5 text-[var(--text-secondary)]">+</button>
       </div>
-      <button onClick={() => document.documentElement.requestFullscreen?.()} className="ml-3 p-1 rounded-md border border-[var(--border-color)] bg-white hover:bg-[var(--bg-hover)] text-[var(--text-secondary)]">
+      <button onClick={() => document.documentElement.requestFullscreen?.()} className="ml-3 p-1 rounded-md border border-[var(--border-color)] bg-[var(--bg-surface)] hover:bg-[var(--bg-hover)] text-[var(--text-secondary)]">
         {icons.fullscreen}
       </button>
     </div>
   )
 
   return (
-    <div ref={menuRef} className="absolute top-[44px] right-0 w-[300px] bg-white border border-[var(--border-color)] shadow-2xl rounded-bl-xl py-1 z-50 animate-fade-in-up origin-top-right">
+    <div ref={menuRef} className="absolute top-[44px] right-0 w-[300px] bg-[var(--bg-surface)] border border-[var(--border-color)] shadow-2xl rounded-bl-xl py-1 z-50 animate-fade-in-up origin-top-right">
       <MenuItem icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>} label="New tab" shortcut="Ctrl+T" onClick={onAddTab} />
       <MenuItem icon={icons.window} label="New window" shortcut="Ctrl+N" onClick={() => window.open(window.location.href, '_blank')} />
       <MenuItem icon={icons.incognito} label="New Incognito window" shortcut="Ctrl+Shift+N" disabled />

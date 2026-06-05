@@ -4,10 +4,10 @@ import {
 } from 'recharts'
 
 const tooltipStyle = {
-  background: '#ffffff',
+  background: 'var(--bg-surface)',
   border: '1px solid var(--border-color)',
   borderRadius: '8px',
-  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+  boxShadow: 'var(--shadow-soft)',
   fontSize: '13px',
   color: 'var(--text-primary)'
 }
@@ -65,12 +65,12 @@ export default function CommunityResults({ results, onOpenLink }) {
         <div className="pt-2">
           <h3 className="text-xl font-medium mb-6 text-[var(--text-primary)]">Data Overview</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="border border-[var(--border-color)] rounded-2xl p-5 bg-white">
+            <div className="border border-[var(--border-color)] rounded-2xl p-5 bg-[var(--bg-surface)]">
               <p className="text-[13px] font-medium mb-4 text-[var(--text-secondary)]">Results per platform</p>
               <ResponsiveContainer width="100%" height={160}>
                 <BarChart data={coverageData} layout="vertical">
-                  <XAxis type="number" tick={{ fill: '#5f6368', fontSize: 11 }} axisLine={{stroke: '#e0e0e0'}} tickLine={false} />
-                  <YAxis dataKey="platform" type="category" tick={{ fill: '#5f6368', fontSize: 11 }} width={80} axisLine={{stroke: '#e0e0e0'}} tickLine={false} />
+                  <XAxis type="number" tick={{ fill: 'var(--text-tertiary)', fontSize: 11 }} axisLine={{stroke: 'var(--border-color)'}} tickLine={false} />
+                  <YAxis dataKey="platform" type="category" tick={{ fill: 'var(--text-tertiary)', fontSize: 11 }} width={80} axisLine={{stroke: 'var(--border-color)'}} tickLine={false} />
                   <Tooltip contentStyle={tooltipStyle} />
                   <Bar dataKey="count" radius={[0, 4, 4, 0]}>
                     {coverageData.map((e, i) => <Cell key={i} fill={e.fill} />)}
@@ -78,7 +78,7 @@ export default function CommunityResults({ results, onOpenLink }) {
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <div className="border border-[var(--border-color)] rounded-2xl p-5 bg-white">
+            <div className="border border-[var(--border-color)] rounded-2xl p-5 bg-[var(--bg-surface)]">
               <p className="text-[13px] font-medium mb-4 text-[var(--text-secondary)]">Engagement</p>
               <ResponsiveContainer width="100%" height={160}>
                 <PieChart>
@@ -89,12 +89,12 @@ export default function CommunityResults({ results, onOpenLink }) {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="border border-[var(--border-color)] rounded-2xl p-5 bg-white">
+            <div className="border border-[var(--border-color)] rounded-2xl p-5 bg-[var(--bg-surface)]">
               <p className="text-[13px] font-medium mb-4 text-[var(--text-secondary)]">Top 6 by score</p>
               <ResponsiveContainer width="100%" height={160}>
                 <BarChart data={allResults}>
-                  <XAxis dataKey="title" tick={{ fill: '#5f6368', fontSize: 10 }} interval={0} angle={-25} textAnchor="end" height={50} axisLine={{stroke: '#e0e0e0'}} tickLine={false} />
-                  <YAxis tick={{ fill: '#5f6368', fontSize: 11 }} axisLine={{stroke: '#e0e0e0'}} tickLine={false} />
+                  <XAxis dataKey="title" tick={{ fill: 'var(--text-tertiary)', fontSize: 10 }} interval={0} angle={-25} textAnchor="end" height={50} axisLine={{stroke: 'var(--border-color)'}} tickLine={false} />
+                  <YAxis tick={{ fill: 'var(--text-tertiary)', fontSize: 11 }} axisLine={{stroke: 'var(--border-color)'}} tickLine={false} />
                   <Tooltip contentStyle={tooltipStyle} formatter={(v, n, p) => [v, `Score (${p.payload.platform})`]} />
                   <Bar dataKey="score" radius={[4, 4, 0, 0]}>
                     {allResults.map((e, i) => <Cell key={i} fill={e.color} />)}
@@ -108,7 +108,7 @@ export default function CommunityResults({ results, onOpenLink }) {
 
       {/* AI Insights */}
       {insights && (
-        <div className="p-8 bg-blue-50/50 border border-blue-100 rounded-3xl mt-12">
+        <div className="p-8 border rounded-3xl mt-12" style={{ background: 'var(--info-bg)', borderColor: 'var(--info-border)' }}>
           <h3 className="text-xl font-medium mb-6 flex items-center gap-2 text-[var(--text-primary)]">
             <span>💡</span> Community Insights
           </h3>
@@ -125,10 +125,10 @@ export default function CommunityResults({ results, onOpenLink }) {
             </h3>
             <div className="grid grid-cols-1 gap-4">
               {sec.data.map((item, idx) => (
-                <div key={idx} className="p-5 border border-[var(--border-color)] rounded-xl hover:border-blue-400 hover:shadow-sm transition-all bg-white group">
+                <div key={idx} className="p-5 border border-[var(--border-color)] rounded-xl hover:border-[var(--action-primary)] hover:shadow-sm transition-all bg-[var(--bg-surface)] group">
                   <a href={sec.getLink(item)}
                     onClick={(e) => { e.preventDefault(); onOpenLink?.(sec.getLink(item), sec.getTitle(item) || sec.title) }}
-                    className="font-medium text-[16px] block mb-2 text-[var(--text-primary)] group-hover:text-blue-600 transition-colors line-clamp-2">
+                    className="font-medium text-[16px] block mb-2 text-[var(--text-primary)] group-hover:text-[var(--link-hover)] transition-colors line-clamp-2">
                     {sec.getTitle(item)}
                   </a>
                   {sec.getDesc?.(item) && <p className="text-[14px] mb-3 text-[var(--text-secondary)] line-clamp-2">{sec.getDesc(item)}</p>}
@@ -136,7 +136,7 @@ export default function CommunityResults({ results, onOpenLink }) {
                   {sec.getMeta(item).length > 0 && (
                     <div className="flex items-center gap-4 text-[13px] text-[var(--text-tertiary)] pt-2 mt-auto">
                       {sec.getMeta(item).map((m, mi) => (
-                        <span key={mi} className="bg-gray-50 px-2 py-0.5 rounded border border-gray-100">{m.label}: {m.val}</span>
+                        <span key={mi} className="bg-[var(--bg-elevated)] px-2 py-0.5 rounded border border-[var(--border-color)]">{m.label}: {m.val}</span>
                       ))}
                     </div>
                   )}

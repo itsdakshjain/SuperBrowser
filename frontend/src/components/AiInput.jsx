@@ -38,11 +38,11 @@ export function AiInput({ messages, onSendMessage, backgroundText = "AI Input", 
   };
 
   return (
-    <div className="flex flex-col h-[60vh] bg-white relative rounded-b-2xl overflow-hidden border-t border-[var(--border-color)]">
+    <div className="flex flex-col h-[60vh] bg-[var(--bg-surface)] relative rounded-b-2xl overflow-hidden border-t border-[var(--border-color)]">
 
       {/* Massive subtle watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">
-        <h1 className="text-[8vw] sm:text-[100px] font-black text-black opacity-[0.03] text-center leading-none tracking-tighter mix-blend-multiply whitespace-nowrap">
+        <h1 className="text-[8vw] sm:text-[100px] font-black text-[var(--text-primary)] opacity-[0.04] text-center leading-none tracking-tighter whitespace-nowrap">
           {backgroundText}
         </h1>
       </div>
@@ -65,7 +65,7 @@ export function AiInput({ messages, onSendMessage, backgroundText = "AI Input", 
                   className={`max-w-[85%] px-5 py-3.5 text-[15px] leading-relaxed shadow-sm
                     ${isUser
                       ? 'bg-[var(--action-primary)] text-white rounded-2xl rounded-br-sm'
-                      : 'bg-white border border-[var(--border-color)] text-[var(--text-primary)] rounded-2xl rounded-bl-sm'
+                      : 'bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)] rounded-2xl rounded-bl-sm'
                     }`}
                 >
                   {msg.text}
@@ -76,7 +76,7 @@ export function AiInput({ messages, onSendMessage, backgroundText = "AI Input", 
         )}
         {isLoading && (
           <div className="flex w-full justify-start animate-fade-in-up">
-            <div className="max-w-[85%] px-5 py-3.5 bg-white border border-[var(--border-color)] rounded-2xl rounded-bl-sm shadow-sm">
+            <div className="max-w-[85%] px-5 py-3.5 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-2xl rounded-bl-sm shadow-sm">
               <LoadingDots />
             </div>
           </div>
@@ -85,7 +85,7 @@ export function AiInput({ messages, onSendMessage, backgroundText = "AI Input", 
       </div>
 
       {/* Sticky Input Bar */}
-      <div className="p-4 bg-white border-t border-[var(--border-color)] relative z-10">
+      <div className="p-4 bg-[var(--bg-surface)] border-t border-[var(--border-color)] relative z-10">
         <div className="flex items-center gap-2 bg-[var(--bg-elevated)] border border-[var(--border-color)] rounded-full px-4 py-2 focus-within:border-[var(--action-primary)] transition-colors shadow-sm">
           <input
             type="text"
@@ -100,7 +100,7 @@ export function AiInput({ messages, onSendMessage, backgroundText = "AI Input", 
           <button
             onClick={handleSend}
             disabled={!inputText.trim() || isLoading}
-            className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center disabled:opacity-30 disabled:bg-[var(--border-color)] transition-all shrink-0 hover:scale-105"
+            className="w-8 h-8 rounded-full bg-[var(--text-primary)] text-[var(--text-inverse)] flex items-center justify-center disabled:opacity-30 disabled:bg-[var(--border-color)] transition-all shrink-0 hover:scale-105"
           >
             <SendIcon />
           </button>

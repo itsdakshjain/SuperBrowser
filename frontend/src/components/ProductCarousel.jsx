@@ -14,7 +14,7 @@ export function ProductCarousel({ products = [] }) {
             target="_blank" 
             rel="noopener noreferrer"
             key={product.position || idx} 
-            className="snap-start shrink-0 w-[180px] border border-[var(--border-color)] rounded-2xl bg-white p-3 hover:border-[var(--action-primary)] hover:shadow-md cursor-pointer transition-all duration-300 group block"
+            className="snap-start shrink-0 w-[180px] border border-[var(--border-color)] rounded-2xl bg-[var(--bg-surface)] p-3 hover:border-[var(--action-primary)] hover:shadow-md cursor-pointer transition-all duration-300 group block"
           >
             {/* Image Placeholder / Actual Image */}
             <div className="w-full h-36 bg-[var(--bg-elevated)] rounded-xl mb-3 flex items-center justify-center overflow-hidden border border-[var(--border-color)] group-hover:bg-[var(--bg-hover)] transition-colors">

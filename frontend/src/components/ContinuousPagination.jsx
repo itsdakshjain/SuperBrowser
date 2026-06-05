@@ -31,7 +31,7 @@ export function ContinuousPagination({ totalPages = 5, defaultPage = 1, onPageCh
   }
 
   return (
-    <div className="inline-flex items-center gap-1 bg-white border border-[var(--border-color)] rounded-full p-1.5 shadow-sm">
+    <div className="inline-flex items-center gap-1 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-full p-1.5 shadow-sm">
       <button 
         onClick={() => handleSetPage(currentPage - 1)}
         disabled={currentPage === 1}
