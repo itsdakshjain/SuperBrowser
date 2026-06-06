@@ -46,7 +46,9 @@ function createNewTab(sessionId = null) {
     history: [],
     browserUrl: "",
     browserTitle: "",
-    showChat: false
+    showChat: false,
+    selectedModel: "llama-3.1-8b-instant",
+    lastQuery: ""
   }
 }
 
@@ -160,17 +162,30 @@ export default function App() {
     }
     const onDone = () => { if (searchControllersRef.current[tabId] === controller) delete searchControllersRef.current[tabId] }
     
+    const selectedModel = tabData.selectedModel || "llama-3.1-8b-instant"
+
     if (tabData.activeMode === 'ai') {
       const context = contextManager.getAIContext(tabId)
       const hasContext = context.queries.length > 0 || context.results.length > 0 || context.visited_pages.length > 0
       if (hasContext) {
-        fetch(`${API_BASE}/api/search/ai/contextual`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal, body: JSON.stringify({ query: tabData.query, persona: searchPersona, context, region: userRegion }) })
+        fetch(`${API_BASE}/api/search/ai/contextual`, { 
+          method: 'POST', 
+          headers: { 'Content-Type': 'application/json' }, 
+          signal: controller.signal, 
+          body: JSON.stringify({ 
+            query: tabData.query, 
+            persona: searchPersona, 
+            context, 
+            region: userRegion,
+            model: selectedModel
+          }) 
+        })
           .then(r => r.json()).then(onSuccess).catch(onError).finally(onDone)
         return
       }
     }
     let url = `${API_BASE}${endpoints[tabData.activeMode]}?q=${encodeURIComponent(tabData.query)}&session_id=${tabData.sessionId}&gl=${userRegion}`
-    if (tabData.activeMode === 'ai') url += `&persona=${searchPersona}`
+    if (tabData.activeMode === 'ai') url += `&persona=${searchPersona}&model=${selectedModel}`
     fetch(url, { signal: controller.signal }).then(r => r.json()).then(onSuccess).catch(onError).finally(onDone)
   }, [contextManager])
 
@@ -182,10 +197,39 @@ export default function App() {
       performSearch(tabId, tab, searchPersona)
       return currentTabs.map(t => {
         if (t.id !== tabId) return t
-        return { ...t, loading: true, error: null, title: t.query.slice(0, 25), history: [...t.history, { query: t.query, mode: t.activeMode }].slice(-10) }
+        return { 
+          ...t, 
+          loading: true, 
+          error: null, 
+          lastQuery: t.query, 
+          title: t.query.slice(0, 25), 
+          history: [...t.history, { query: t.query, mode: t.activeMode }].slice(-10) 
+        }
       })
     })
   }, [performSearch, contextManager])
+
+  const handleStop = useCallback((tabId) => {
+    const controller = searchControllersRef.current[tabId]
+    if (controller) {
+      controller.abort()
+      delete searchControllersRef.current[tabId]
+    }
+    updateTab(tabId, { loading: false })
+  }, [updateTab])
+
+  const handleRegenerate = useCallback((tabId) => {
+    setTabs(currentTabs => {
+      const tab = currentTabs.find(t => t.id === tabId)
+      if (!tab || !tab.lastQuery) return currentTabs
+      const updatedTab = { ...tab, query: tab.lastQuery }
+      performSearch(tabId, updatedTab, persona)
+      return currentTabs.map(t => {
+        if (t.id !== tabId) return t
+        return { ...t, query: t.lastQuery, loading: true, error: null }
+      })
+    })
+  }, [performSearch, persona])
 
   const handleModeChange = useCallback((mode) => {
     setTabs(currentTabs => {
@@ -325,13 +369,22 @@ export default function App() {
                     onKeyDown={(e) => e.key === 'Enter' && handleSearch(activeTabId, persona)}
                     placeholder="Search..."
                     className="flex-1 ml-3 outline-none text-base bg-transparent text-[var(--text-primary)]" />
-                  <button 
-                    onClick={() => handleSearch(activeTabId, persona)} 
-                    disabled={!activeTab?.query?.trim() || activeTab?.loading}
-                    className="ml-2 px-4 py-1.5 rounded-full bg-[var(--action-primary)] text-white text-sm font-medium hover:bg-[var(--action-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  >
-                    Search
-                  </button>
+                  {activeTab?.loading ? (
+                    <button 
+                      onClick={() => handleStop(activeTabId)} 
+                      className="ml-2 px-4 py-1.5 rounded-full bg-red-500 text-white text-sm font-medium hover:bg-red-600 transition-colors"
+                    >
+                      Stop
+                    </button>
+                  ) : (
+                    <button 
+                      onClick={() => handleSearch(activeTabId, persona)} 
+                      disabled={!activeTab?.query?.trim()}
+                      className="ml-2 px-4 py-1.5 rounded-full bg-[var(--action-primary)] text-white text-sm font-medium hover:bg-[var(--action-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    >
+                      Search
+                    </button>
+                  )}
                </div>
                <div className="flex items-center gap-2">
                  <button onClick={() => handleModeChange('seo')} className={`pill-btn px-4 py-1.5 ${activeTab?.activeMode === 'seo' ? 'active' : ''}`}>SEO</button>
@@ -355,14 +408,31 @@ export default function App() {
                  
                  {/* AI Persona Bar inside results area for cleaner header */}
                  {activeTab?.activeMode === 'ai' && (
-                   <div className="max-w-4xl mx-auto mb-6 flex justify-between items-center">
-                     <div className="flex items-center gap-3">
-                       <span className="text-sm font-medium text-[var(--text-secondary)]">Persona:</span>
-                       <PersonaDropdown value={persona} onChange={setPersona} personas={PERSONAS} />
-                     </div>
-                     <ContextIndicator tabId={activeTabId} contextManager={contextManager} onToggleInfo={() => updateTab(activeTabId, { showChat: !activeTab?.showChat })} />
-                   </div>
-                 )}
+                    <div className="max-w-4xl mx-auto mb-6 flex justify-between items-center">
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <span className="text-sm font-medium text-[var(--text-secondary)]">Persona:</span>
+                        <PersonaDropdown value={persona} onChange={setPersona} personas={PERSONAS} />
+                        
+                        <span className="text-sm font-medium text-[var(--text-secondary)] ml-3">Model:</span>
+                        <ModelDropdown value={activeTab?.selectedModel || "llama-3.1-8b-instant"} onChange={(model) => updateTab(activeTabId, { selectedModel: model })} />
+                        
+                        {activeTab?.results && (
+                          <button 
+                            onClick={() => handleRegenerate(activeTabId)}
+                            disabled={activeTab?.loading || !activeTab?.lastQuery}
+                            className="pill-btn px-4 py-1.5 ml-3 text-xs flex items-center gap-1.5 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                            title="Regenerate Answer"
+                          >
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                            </svg>
+                            Regenerate
+                          </button>
+                        )}
+                      </div>
+                      <ContextIndicator tabId={activeTabId} contextManager={contextManager} onToggleInfo={() => updateTab(activeTabId, { showChat: !activeTab?.showChat })} />
+                    </div>
+                  )}
 
                  <ResultsPanel mode={activeTab?.activeMode} results={activeTab?.results} loading={activeTab?.loading} onOpenLink={openInAppUrl} query={activeTab?.query} />
                </div>
@@ -602,6 +672,54 @@ function PersonaDropdown({ value, onChange, personas }) {
     </div>
   )
 }
+
+
+const MODELS = [
+  { id: "llama-3.1-8b-instant",     name: "Llama 3.1 8B",       desc: "Fast & efficient" },
+  { id: "llama-3.3-70b-versatile",   name: "Llama 3.3 70B",     desc: "Most capable, best analysis" },
+  { id: "mixtral-8x7b-32768",       name: "Mixtral 8x7B",      desc: "Large context" },
+  { id: "gemma2-9b-it",             name: "Gemma 2 9B",        desc: "Google instruction-tuned" },
+  { id: "llama-3.1-70b-versatile",   name: "Llama 3.1 70B",     desc: "Detailed responses" }
+]
+
+function ModelDropdown({ value, onChange }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef()
+  const selected = MODELS.find(m => m.id === value) || MODELS[0]
+
+  useEffect(() => {
+    const handler = (e) => { if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setIsOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [])
+
+  return (
+    <div ref={dropdownRef} className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="pill-btn px-4 py-1.5 flex items-center gap-2 min-w-[140px] justify-between"
+      >
+        <span>{selected.name}</span>
+        <ChevronDownIcon />
+      </button>
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-2 w-64 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-xl shadow-lg py-2 z-50 animate-fade-in-up">
+          {MODELS.map(m => (
+            <button
+              key={m.id}
+              onClick={() => { onChange(m.id); setIsOpen(false) }}
+              className={`w-full text-left px-4 py-2 hover:bg-[var(--bg-hover)] transition-colors flex flex-col ${value === m.id ? 'bg-[rgba(50,121,249,0.05)]' : ''}`}
+            >
+              <span className={`text-xs font-semibold ${value === m.id ? 'text-[var(--action-primary)]' : 'text-[var(--text-primary)]'}`}>{m.name}</span>
+              <span className="text-[10px] text-[var(--text-tertiary)]">{m.desc}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 
 function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
   const [chatMessages, setChatMessages] = useState([])
