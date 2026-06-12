@@ -99,7 +99,7 @@ jobs:
             
             await github.rest.issues.createComment({
               owner, repo, issue_number: issueNumber,
-              body: ` Assigned to @${commenter}! You now have ownership of this issue. Please drop your PR within **7 days**. If no draft or PR is linked by then, it will be unassigned automatically to keep the leaderboard moving fairly. Happy coding! 🚀`,
+              body: ` Assigned to @${commenter}! Please drop your PR within **2 days**. If no draft or PR is linked by then, it will be unassigned automatically. Also star the repo! `,
             });
 
 
