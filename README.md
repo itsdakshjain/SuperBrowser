@@ -353,13 +353,6 @@ Released under the **[MIT License](./LICENSE)**.
 | <img src="https://github.com/PandyaJeet.png" width="50px" style="border-radius:50%;" alt="Jeet Pandya"/> | **Jeet Pandya** | [@PandyaJeet](https://github.com/PandyaJeet) |
 | <img src="https://github.com/Princepatel-027.png" width="50px" style="border-radius:50%;" alt="Prince Patel"/> | **Prince Patel** | [@Princepatel-027](https://github.com/Princepatel-027) |
 
-<div align="center">
-<br/>
-<sub>Built using React, FastAPI, and AI.</sub>
-<br/>
-<b>⭐ If SuperBrowser helps you, give it a star!</b>
-</div>
-
 
 ## Contributors
 
@@ -369,3 +362,12 @@ Released under the **[MIT License](./LICENSE)**.
 
 Updates automatically as new contributors merge pull requests. 
 Start contributing and see your profile here?
+
+<div align="center">
+<br/>
+<sub>Built using React, FastAPI, and AI.</sub>
+<br/>
+<b>⭐ If SuperBrowser helps you, give it a star!</b>
+</div>
+
+
