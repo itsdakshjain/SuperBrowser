@@ -9,11 +9,11 @@ import { AiInput } from './components/AiInput'
 import { ProductCarousel } from './components/ProductCarousel'
 
 const PERSONAS = [
-  { id: "default",    label: "Default",     desc: "Raw Groq"            },
-  { id: "chatgpt",    label: "ChatGPT",      desc: "Concise & practical" },
-  { id: "gemini",     label: "Gemini",       desc: "Analytical & broad"  },
-  { id: "perplexity", label: "Perplexity",   desc: "Factual & cited"     },
-  { id: "claude",     label: "Claude",       desc: "Nuanced & careful"   },
+  { id: "default", label: "Default", desc: "Raw Groq" },
+  { id: "chatgpt", label: "ChatGPT", desc: "Concise & practical" },
+  { id: "gemini", label: "Gemini", desc: "Analytical & broad" },
+  { id: "perplexity", label: "Perplexity", desc: "Factual & cited" },
+  { id: "claude", label: "Claude", desc: "Nuanced & careful" },
 ]
 
 const API_BASE = getApiBase()
@@ -30,21 +30,21 @@ function getInitialTheme() {
 // Icons
 const SunIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="5"/>
-    <line x1="12" y1="1" x2="12" y2="3"/>
-    <line x1="12" y1="21" x2="12" y2="23"/>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-    <line x1="1" y1="12" x2="3" y2="12"/>
-    <line x1="21" y1="12" x2="23" y2="12"/>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1" x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
   </svg>
 )
 
 const MoonIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
   </svg>
 )
 
@@ -66,31 +66,31 @@ function createNewTab(sessionId = null) {
 
 /* ── SVG Icons ── */
 const SearchIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
 )
 const PlusIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
 )
 const XIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
 )
 const MinusIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14"/></svg>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14" /></svg>
 )
 const SquareIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /></svg>
 )
 const BrainIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 5.5 4 7.5L12 22l3-5.5c2-2 4-4.5 4-7.5a7 7 0 0 0-7-7z"/></svg>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M12 2a7 7 0 0 0-7 7c0 3 2 5.5 4 7.5L12 22l3-5.5c2-2 4-4.5 4-7.5a7 7 0 0 0-7-7z" /></svg>
 )
 const ClockIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
 )
-const ChevronLeftIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-const ChevronRightIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-const RefreshIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-const HomeIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-const ChevronDownIcon = () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+const ChevronLeftIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+const ChevronRightIcon = () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+const RefreshIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></svg>
+const HomeIcon = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+const ChevronDownIcon = () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
 
 export default function App() {
   const [theme, setTheme] = useState(getInitialTheme)
@@ -101,10 +101,10 @@ export default function App() {
     const initialTab = createNewTab()
     return { tabs: [initialTab], activeId: initialTab.id }
   })
-  
+
   const searchInputHomeRef = useRef(null)
   const searchInputHeaderRef = useRef(null)
-  
+
   const [tabs, setTabs] = useState(tabsState.tabs)
   const [activeTabId, setActiveTabId] = useState(tabsState.activeId)
   const [showHistory, setShowHistory] = useState(false)
@@ -120,7 +120,7 @@ export default function App() {
       return parts.length > 1 ? parts[1].toLowerCase() : 'us'
     } catch { return 'us' }
   })
-  
+
   const searchControllersRef = useRef({})
   const contextManager = useContextManager()
   const activeTab = tabs.find(t => t.id === activeTabId)
@@ -134,14 +134,14 @@ export default function App() {
 
   useEffect(() => {
     if (!window.superBrowserDesktop?.isElectron || !window.superBrowserDesktop?.backend?.getStatus) return
-    window.superBrowserDesktop.backend.getStatus().then(setBackendStatus).catch(() => {})
+    window.superBrowserDesktop.backend.getStatus().then(setBackendStatus).catch(() => { })
   }, [])
-  
+
   useEffect(() => {
     document.documentElement.dataset.theme = theme
     try {
       window.localStorage.setItem(THEME_STORAGE_KEY, theme)
-    } catch {}
+    } catch { }
   }, [theme])
 
   useEffect(() => {
@@ -149,7 +149,7 @@ export default function App() {
       .then(() => setSessionStatus("active"))
       .catch(() => setSessionStatus("error"))
     const stopSession = () => {
-      contextManager.stopSession(appSessionId, { keepalive: true }).catch(() => {})
+      contextManager.stopSession(appSessionId, { keepalive: true }).catch(() => { })
       setSessionStatus("stopped")
     }
     window.addEventListener("beforeunload", stopSession)
@@ -175,7 +175,7 @@ export default function App() {
       setTabs(p => p.map(t => t.id === tabId ? { ...t, error: "Search failed. Please try again.", loading: false } : t))
     }
     const onDone = () => { if (searchControllersRef.current[tabId] === controller) delete searchControllersRef.current[tabId] }
-    
+
     if (tabData.activeMode === 'ai') {
       const context = contextManager.getAIContext(tabId)
       const hasContext = context.queries.length > 0 || context.results.length > 0 || context.visited_pages.length > 0
@@ -232,7 +232,7 @@ export default function App() {
         return [r]
       }
       const filtered = prevTabs.filter(t => t.id !== tabId)
-      
+
       setActiveTabId(currentActiveId => {
         if (tabId === currentActiveId) {
           const index = prevTabs.findIndex(t => t.id === tabId)
@@ -248,9 +248,9 @@ export default function App() {
   // Unified Top-Level Keyboard Shortcuts Manager
   useEffect(() => {
     const handleKeyDown = (e) => {
-      const isTyping = e.target.tagName === 'INPUT' || 
-                       e.target.tagName === 'TEXTAREA' || 
-                       e.target.isContentEditable;
+      const isTyping = e.target.tagName === 'INPUT' ||
+        e.target.tagName === 'TEXTAREA' ||
+        e.target.isContentEditable;
 
       // 1. Ctrl + L / Cmd + L : Focus and Select Search Input (Always works everywhere)
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'l') {
@@ -313,18 +313,28 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [appSessionId, handleModeChange, updateTab, handleAddTab, handleCloseTab])
 
-  function handleHistoryClick(item) { 
+  function handleHistoryClick(item) {
     updateTab(activeTabId, { query: item.query, activeMode: item.mode })
-    setTimeout(() => handleSearch(activeTabId, persona), 0) 
+    setTimeout(() => handleSearch(activeTabId, persona), 0)
   }
-  
+
   function openInAppUrl(url, title = "Web Page") {
     if (!url) return
+    // SEC-02: Validate URL scheme — only allow http: and https:
+    try {
+      const parsed = new URL(url)
+      if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+        console.warn('[SuperBrowser] Blocked non-http(s) URL:', parsed.protocol, url)
+        return
+      }
+    } catch {
+      console.warn('[SuperBrowser] Blocked malformed URL:', url)
+      return
+    }
     const bt = createNewTab(appSessionId); bt.browserUrl = url; bt.browserTitle = title; bt.title = (title || "Web").slice(0, 25); bt.query = url
     setTabs(p => [...p, bt]); setActiveTabId(bt.id)
     if (activeTab) contextManager.addVisitedPage(activeTabId, activeTab.sessionId, url, title, `Visited: ${url}`)
   }
-  
   function goHome() {
     updateTab(activeTabId, { query: "", results: null, loading: false, error: null, browserUrl: "", browserTitle: "" })
   }
@@ -363,24 +373,24 @@ export default function App() {
               <div className="absolute inset-0 bg-white/70 blur-3xl -z-10 rounded-full scale-[1.3] pointer-events-none"></div>
               <h1 className="title-hero text-center select-none m-0">SUPER BROWSER</h1>
             </div>
-            
+
             <div className="w-full max-w-2xl mb-8">
               <div className="pill-search flex items-center px-6 py-4 w-full cursor-text relative bg-white/80 backdrop-blur-sm" onClick={() => searchInputHomeRef.current?.focus()}>
-                <button 
-                  onClick={(e) => { e.stopPropagation(); handleSearch(activeTabId, persona) }} 
+                <button
+                  onClick={(e) => { e.stopPropagation(); handleSearch(activeTabId, persona) }}
                   className="text-[var(--text-secondary)] hover:text-[var(--action-primary)] transition-colors shrink-0"
                 >
                   <SearchIcon />
                 </button>
-                <input 
+                <input
                   ref={searchInputHomeRef}
-                  type="text" 
-                  value={activeTab?.query || ''} 
-                  onChange={(e) => updateTab(activeTabId, { query: e.target.value })} 
+                  type="text"
+                  value={activeTab?.query || ''}
+                  onChange={(e) => updateTab(activeTabId, { query: e.target.value })}
                   onKeyDown={(e) => e.key === 'Enter' && handleSearch(activeTabId, persona)}
                   placeholder="Enter your search..."
                   className="flex-1 ml-4 outline-none text-xl bg-transparent text-[var(--text-primary)]"
-                  style={{ letterSpacing: '-0.01em' }} 
+                  style={{ letterSpacing: '-0.01em' }}
                 />
               </div>
             </div>
@@ -396,92 +406,92 @@ export default function App() {
           <div className="flex-1 flex flex-col min-h-0 bg-white shadow-xl relative z-10">
             {/* Minimalist Top Header */}
             <div className="px-6 py-3 border-b border-[var(--border-color)] flex items-center gap-4 bg-white">
-               {/* Browser Navigation Controls */}
-               <div className="flex items-center gap-1">
-                 <button onClick={() => {
-                   if (activeTab?.history && activeTab.history.length > 1) {
-                     const prev = activeTab.history[activeTab.history.length - 2];
-                     updateTab(activeTabId, { query: prev.query, activeMode: prev.mode, history: activeTab.history.slice(0, -1) });
-                     setTimeout(() => handleSearch(activeTabId, persona), 0);
-                   } else {
-                     goHome();
-                   }
-                 }} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Back">
-                   <ChevronLeftIcon />
-                 </button>
-                 <button disabled className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] opacity-30 cursor-not-allowed transition-colors" title="Forward">
-                   <ChevronRightIcon />
-                 </button>
-                 <button onClick={() => { if (activeTab?.query) handleSearch(activeTabId, persona) }} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Reload">
-                   <RefreshIcon />
-                 </button>
-                 <button onClick={goHome} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Home">
-                   <HomeIcon />
-                 </button>
-               </div>
+              {/* Browser Navigation Controls */}
+              <div className="flex items-center gap-1">
+                <button onClick={() => {
+                  if (activeTab?.history && activeTab.history.length > 1) {
+                    const prev = activeTab.history[activeTab.history.length - 2];
+                    updateTab(activeTabId, { query: prev.query, activeMode: prev.mode, history: activeTab.history.slice(0, -1) });
+                    setTimeout(() => handleSearch(activeTabId, persona), 0);
+                  } else {
+                    goHome();
+                  }
+                }} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Back">
+                  <ChevronLeftIcon />
+                </button>
+                <button disabled className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] opacity-30 cursor-not-allowed transition-colors" title="Forward">
+                  <ChevronRightIcon />
+                </button>
+                <button onClick={() => { if (activeTab?.query) handleSearch(activeTabId, persona) }} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Reload">
+                  <RefreshIcon />
+                </button>
+                <button onClick={goHome} className="p-2 flex items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Home">
+                  <HomeIcon />
+                </button>
+              </div>
 
-               <div className="pill-search flex items-center px-5 py-2.5 flex-1 max-w-3xl">
-                  {activeTab?.loading ? <div className="w-[18px] h-[18px] rounded-full border-2 border-[var(--border-color)] border-t-[var(--action-primary)] animate-spin" /> : <span className="text-[var(--text-tertiary)]"><SearchIcon /></span>}
-                  <input 
-                    ref={searchInputHeaderRef}
-                    type="text" 
-                    value={activeTab?.query || ''} 
-                    onChange={(e) => updateTab(activeTabId, { query: e.target.value })} 
-                    onKeyDown={(e) => e.key === 'Enter' && handleSearch(activeTabId, persona)}
-                    placeholder="Search..."
-                    className="flex-1 ml-3 outline-none text-base bg-transparent text-[var(--text-primary)]" 
-                  />
-                  <button 
-                    onClick={() => handleSearch(activeTabId, persona)} 
-                    disabled={!activeTab?.query?.trim() || activeTab?.loading}
-                    className="ml-2 px-4 py-1.5 rounded-full bg-[var(--action-primary)] text-white text-sm font-medium hover:bg-[var(--action-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  >
-                    Search
-                  </button>
-               </div>
-               <div className="flex items-center gap-2">
-                 <button onClick={() => handleModeChange('seo')} className={`pill-btn px-4 py-1.5 ${activeTab?.activeMode === 'seo' ? 'active' : ''}`}>SEO</button>
-                 <button onClick={() => handleModeChange('ai')} className={`pill-btn px-4 py-1.5 ${activeTab?.activeMode === 'ai' ? 'active' : ''}`}>AI</button>
-                 <button onClick={() => handleModeChange('community')} className={`pill-btn px-4 py-1.5 ${activeTab?.activeMode === 'community' ? 'active' : ''}`}>REVIEW</button>
-               </div>
+              <div className="pill-search flex items-center px-5 py-2.5 flex-1 max-w-3xl">
+                {activeTab?.loading ? <div className="w-[18px] h-[18px] rounded-full border-2 border-[var(--border-color)] border-t-[var(--action-primary)] animate-spin" /> : <span className="text-[var(--text-tertiary)]"><SearchIcon /></span>}
+                <input
+                  ref={searchInputHeaderRef}
+                  type="text"
+                  value={activeTab?.query || ''}
+                  onChange={(e) => updateTab(activeTabId, { query: e.target.value })}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch(activeTabId, persona)}
+                  placeholder="Search..."
+                  className="flex-1 ml-3 outline-none text-base bg-transparent text-[var(--text-primary)]"
+                />
+                <button
+                  onClick={() => handleSearch(activeTabId, persona)}
+                  disabled={!activeTab?.query?.trim() || activeTab?.loading}
+                  className="ml-2 px-4 py-1.5 rounded-full bg-[var(--action-primary)] text-white text-sm font-medium hover:bg-[var(--action-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Search
+                </button>
+              </div>
+              <div className="flex items-center gap-2">
+                <button onClick={() => handleModeChange('seo')} className={`pill-btn px-4 py-1.5 ${activeTab?.activeMode === 'seo' ? 'active' : ''}`}>SEO</button>
+                <button onClick={() => handleModeChange('ai')} className={`pill-btn px-4 py-1.5 ${activeTab?.activeMode === 'ai' ? 'active' : ''}`}>AI</button>
+                <button onClick={() => handleModeChange('community')} className={`pill-btn px-4 py-1.5 ${activeTab?.activeMode === 'community' ? 'active' : ''}`}>REVIEW</button>
+              </div>
             </div>
-            
+
             {/* Content Area */}
             <div className="flex-1 flex overflow-hidden bg-white">
-               <div className="flex-1 overflow-auto p-6 md:p-10 max-w-5xl mx-auto">
-                 {activeTab?.error && <div className="text-red-700 border border-red-200 bg-red-50 p-4 rounded-xl mb-6 text-sm max-w-4xl mx-auto">{activeTab.error}</div>}
-                 
-                 {/* AI Persona Bar inside results area for cleaner header */}
-                 {activeTab?.activeMode === 'ai' && (
-                   <div className="max-w-4xl mx-auto mb-6 flex justify-between items-center">
-                     <div className="flex items-center gap-3">
-                       <span className="text-sm font-medium text-[var(--text-secondary)]">Persona:</span>
-                       <PersonaDropdown value={persona} onChange={setPersona} personas={PERSONAS} />
-                     </div>
-                     <ContextIndicator tabId={activeTabId} contextManager={contextManager} onToggleInfo={() => setShowContextInfo(!showContextInfo)} />
-                   </div>
-                 )}
+              <div className="flex-1 overflow-auto p-6 md:p-10 max-w-5xl mx-auto">
+                {activeTab?.error && <div className="text-red-700 border border-red-200 bg-red-50 p-4 rounded-xl mb-6 text-sm max-w-4xl mx-auto">{activeTab.error}</div>}
 
-                 <ResultsPanel mode={activeTab?.activeMode} results={activeTab?.results} loading={activeTab?.loading} onOpenLink={openInAppUrl} query={activeTab?.query} />
-               </div>
-               
-               {/* History Panel Sidebar - Now accessed via browser menu */}
-               {showHistory && (
-                 <div className="w-80 border-l border-[var(--border-color)] bg-white p-4 overflow-y-auto">
-                   <div className="flex items-center justify-between mb-4">
-                     <h3 className="font-semibold text-[var(--text-primary)]">Tab History</h3>
-                     <button onClick={() => setShowHistory(false)} className="p-1 rounded hover:bg-[var(--bg-hover)] text-[var(--text-tertiary)]"><XIcon /></button>
-                   </div>
-                   <div className="space-y-2">
-                     {activeTab?.history?.slice().reverse().map((item, i) => (
-                       <button key={i} onClick={() => handleHistoryClick(item)} className="w-full text-left p-3 rounded-lg border border-[var(--border-color)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-hover)] transition-colors">
-                         <p className="text-sm truncate mb-1 text-[var(--text-primary)]">{item.query}</p>
-                         <span className="text-[11px] px-2 py-0.5 rounded font-medium bg-[var(--bg-elevated)] text-[var(--text-secondary)] uppercase">{item.mode}</span>
-                       </button>
-                     ))}
-                   </div>
-                 </div>
-               )}
+                {/* AI Persona Bar inside results area for cleaner header */}
+                {activeTab?.activeMode === 'ai' && (
+                  <div className="max-w-4xl mx-auto mb-6 flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm font-medium text-[var(--text-secondary)]">Persona:</span>
+                      <PersonaDropdown value={persona} onChange={setPersona} personas={PERSONAS} />
+                    </div>
+                    <ContextIndicator tabId={activeTabId} contextManager={contextManager} onToggleInfo={() => setShowContextInfo(!showContextInfo)} />
+                  </div>
+                )}
+
+                <ResultsPanel mode={activeTab?.activeMode} results={activeTab?.results} loading={activeTab?.loading} onOpenLink={openInAppUrl} query={activeTab?.query} />
+              </div>
+
+              {/* History Panel Sidebar - Now accessed via browser menu */}
+              {showHistory && (
+                <div className="w-80 border-l border-[var(--border-color)] bg-white p-4 overflow-y-auto">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="font-semibold text-[var(--text-primary)]">Tab History</h3>
+                    <button onClick={() => setShowHistory(false)} className="p-1 rounded hover:bg-[var(--bg-hover)] text-[var(--text-tertiary)]"><XIcon /></button>
+                  </div>
+                  <div className="space-y-2">
+                    {activeTab?.history?.slice().reverse().map((item, i) => (
+                      <button key={i} onClick={() => handleHistoryClick(item)} className="w-full text-left p-3 rounded-lg border border-[var(--border-color)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-hover)] transition-colors">
+                        <p className="text-sm truncate mb-1 text-[var(--text-primary)]">{item.query}</p>
+                        <span className="text-[11px] px-2 py-0.5 rounded font-medium bg-[var(--bg-elevated)] text-[var(--text-secondary)] uppercase">{item.mode}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -499,7 +509,7 @@ export default function App() {
 function TabBar({ tabs, activeTabId, onTabClick, onCloseTab, onAddTab, onShowHistory, onOpenPricing, theme, onToggleTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const nextTheme = theme === 'dark' ? 'light' : 'dark'
-  
+
   return (
     <div className="flex border-b border-[var(--border-color)] w-full bg-white select-none" style={{ height: '44px' }}>
       <div className="flex-1 flex overflow-x-auto scrollbar-hide h-full">
@@ -517,14 +527,14 @@ function TabBar({ tabs, activeTabId, onTabClick, onCloseTab, onAddTab, onShowHis
         </button>
       </div>
       <div className="flex items-center h-full border-l border-[var(--border-color)] relative">
-        <button 
+        <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className={`px-5 h-full text-[12px] font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-colors ${isMenuOpen ? 'bg-[var(--bg-hover)]' : ''}`}
         >
           BROWSER MENU
         </button>
         {isMenuOpen && <BrowserMenu onClose={() => setIsMenuOpen(false)} onAddTab={onAddTab} onShowHistory={onShowHistory} onOpenPricing={onOpenPricing} />}
-        
+
         {/* Theme Toggle Button */}
         <button
           type="button"
@@ -536,7 +546,7 @@ function TabBar({ tabs, activeTabId, onTabClick, onCloseTab, onAddTab, onShowHis
         >
           {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
         </button>
-        
+
         {/* Pricing Button */}
         <button
           onClick={() => { setIsMenuOpen(false); onOpenPricing() }}
@@ -545,7 +555,7 @@ function TabBar({ tabs, activeTabId, onTabClick, onCloseTab, onAddTab, onShowHis
         >
           PRICING
         </button>
-        
+
         {/* Window Controls */}
         <div className="flex h-full pl-1 border-l border-[var(--border-color)]">
           <button onClick={() => window.superBrowserDesktop?.minimize?.()} className="w-12 h-full text-[var(--text-tertiary)] hover:bg-[var(--bg-hover)] flex items-center justify-center transition-colors" title="Minimize"><MinusIcon /></button>
@@ -738,7 +748,7 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
             setSelectedModel(data.default || 'llama-3.1-8b-instant')
           }
         })
-        .catch(() => {})
+        .catch(() => { })
     }
   }, [show])
 
@@ -753,7 +763,7 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
       return () => document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [showModelSelector])
-  
+
   if (!show) return null
 
   const currentModel = models.find(m => m.id === selectedModel) || { name: 'Llama 3.1 8B', id: selectedModel }
@@ -777,7 +787,7 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
 
       if (!response.ok) throw new Error(`Chat failed: ${response.status}`)
       const data = await response.json()
-      
+
       const aiReply = {
         id: (Date.now() + 1).toString(),
         text: data.response || 'Sorry, I could not generate a response.',
@@ -808,18 +818,18 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
           </div>
           <div className="flex items-center gap-3">
             <div className="relative" ref={modelSelectorRef}>
-              <button 
+              <button
                 onClick={() => setShowModelSelector(!showModelSelector)}
                 className="flex items-center gap-2 px-3 py-1.5 text-sm bg-[var(--bg-elevated)] border border-[var(--border-color)] rounded-lg hover:bg-[var(--bg-hover)] transition-colors"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a2 2 0 0 1 0 4h-1.17a7 7 0 0 1-6.83 5 7 7 0 0 1-6.83-5H6a2 2 0 0 1 0-4h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/>
-                  <circle cx="12" cy="17" r="1"/>
+                  <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a2 2 0 0 1 0 4h-1.17a7 7 0 0 1-6.83 5 7 7 0 0 1-6.83-5H6a2 2 0 0 1 0-4h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z" />
+                  <circle cx="12" cy="17" r="1" />
                 </svg>
                 <span className="font-medium">{currentModel.name}</span>
                 <ChevronDownIcon />
               </button>
-              
+
               {showModelSelector && (
                 <div className="absolute right-0 top-full mt-2 w-72 bg-white border border-[var(--border-color)] rounded-xl shadow-xl z-50 overflow-hidden animate-fade-in-up">
                   <div className="p-3 border-b border-[var(--border-color)] bg-[var(--bg-elevated)]">
@@ -836,7 +846,7 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
                           <span className="font-medium text-sm text-[var(--text-primary)]">{model.name}</span>
                           {selectedModel === model.id && (
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--action-primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                              <polyline points="20 6 9 17 4 12"/>
+                              <polyline points="20 6 9 17 4 12" />
                             </svg>
                           )}
                         </div>
@@ -851,7 +861,7 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
             <button onClick={onClose} className="btn-secondary px-4 py-1.5 text-sm hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-colors">Close Session</button>
           </div>
         </div>
-        
+
         <AiInput
           messages={chatMessages}
           onSendMessage={handleSend}
@@ -867,19 +877,49 @@ function ContextWindow({ show, onClose, tabId, sessionId, contextManager }) {
 function BackendStatusBanner() { return null }
 
 function BrowserPanel({ url, title, onClose }) {
-  const reloadWebview = () => document.getElementById(`webview-${url}`)?.reload()
+  const webviewRef = useRef(null)
+
+  // SEC-02: Block non-http(s) navigations inside the webview
+  useEffect(() => {
+    const webview = webviewRef.current
+    if (!webview) return
+
+    const handleWillNavigate = (e) => {
+      try {
+        const parsed = new URL(e.url)
+        if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+          console.warn('[SuperBrowser] webview blocked navigation to:', parsed.protocol, e.url)
+          e.preventDefault()
+        }
+      } catch {
+        console.warn('[SuperBrowser] webview blocked malformed navigation URL:', e.url)
+        e.preventDefault()
+      }
+    }
+
+    webview.addEventListener('will-navigate', handleWillNavigate)
+    return () => webview.removeEventListener('will-navigate', handleWillNavigate)
+  }, [url])
+
+  const reloadWebview = () => webviewRef.current?.reload()
 
   return (
     <div className="h-full flex flex-col bg-white animate-fade-in-up">
       <div className="px-4 py-2 border-b border-[var(--border-color)] flex items-center gap-3">
         <div className="flex items-center gap-1">
           <button onClick={onClose} className="p-1.5 rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Back"><ChevronLeftIcon /></button>
-          <button disabled className="p-1.5 rounded-full text-[var(--text-secondary)] opacity-30 cursor-not-allowed transition-colors" title="Forward"><ChevronRightIcon /></button>
-          <button onClick={reloadWebview} className="p-1.5 rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-black transition-colors" title="Reload"><RefreshIcon /></button>
+          <button onClick={reloadWebview} className="p-1.5 rounded-full text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-colors" title="Reload"><RefreshIcon /></button>
         </div>
         <input value={url} readOnly className="flex-1 bg-[var(--bg-elevated)] border border-[var(--border-color)] text-sm rounded-lg px-3 py-1.5 outline-none text-[var(--text-secondary)]" />
       </div>
-      <webview id={`webview-${url}`} src={url} className="w-full flex-1" style={{ minHeight: 0 }} allowpopups="true" />
+      {/* SEC-02: allowpopups removed; popups are blocked at process level in main.cjs */}
+      <webview
+        ref={webviewRef}
+        id={`webview-${url}`}
+        src={url}
+        className="w-full flex-1"
+        style={{ minHeight: 0 }}
+      />
     </div>
   )
 }
@@ -969,7 +1009,7 @@ function PricingPage({ onClose }) {
 function BrowserMenu({ onClose, onAddTab, onShowHistory, onOpenPricing }) {
   const menuRef = useRef()
   const [zoomLevel, setZoomLevel] = useState(100)
-  
+
   useEffect(() => {
     const handler = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) onClose() }
     document.addEventListener('mousedown', handler)
@@ -982,36 +1022,36 @@ function BrowserMenu({ onClose, onAddTab, onShowHistory, onOpenPricing }) {
   }
 
   const icons = {
-    user: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>,
-    key: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>,
-    history: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>,
-    download: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>,
-    star: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
-    grid: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>,
-    puzzle: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 0-.253.902l.331 2.076c.12.758-.195 1.503-.82 1.961a2.126 2.126 0 0 1-1.282.428h-.197c-.366 0-.715-.145-.968-.398l-1.526-1.526a1.12 1.12 0 0 0-1.428-.15l-1.693 1.13c-.63.42-1.439.467-2.112.122A2.43 2.43 0 0 1 8 18V5c0-1.105.895-2 2-2h4a2 2 0 0 1 2 2v2.586a1 1 0 0 0 .293.707l1.414 1.414c.294.294.767.198.887-.198.24-.76.71-1.464 1.516-1.464H21a1 1 0 0 1 1 1v.707l-2.561.1z"/></svg>,
-    trash: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>,
-    zoom: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
-    fullscreen: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>,
-    print: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>,
-    lens: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="12" cy="12" r="3"/><path d="M3 9v6M9 3h6M9 21h6M21 9v6"/></svg>,
-    translate: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg>,
-    find: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>,
-    cast: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 16v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v3"/><path d="M2 12a10 10 0 0 1 10 10"/><path d="M2 8a14 14 0 0 1 14 14"/></svg>,
-    briefcase: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>,
-    pricing: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22"/><path d="M17 5H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg>,
-    help: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
-    settings: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>,
-    exit: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>,
-    window: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>,
-    incognito: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="7" cy="15" r="3"/><circle cx="17" cy="15" r="3"/><path d="M10 15h4M5 12V9a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v3H5z"/></svg>,
+    user: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="8" r="5" /><path d="M20 21a8 8 0 1 0-16 0" /></svg>,
+    key: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" /></svg>,
+    history: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /><path d="M12 7v5l4 2" /></svg>,
+    download: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>,
+    star: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>,
+    grid: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>,
+    puzzle: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 0-.253.902l.331 2.076c.12.758-.195 1.503-.82 1.961a2.126 2.126 0 0 1-1.282.428h-.197c-.366 0-.715-.145-.968-.398l-1.526-1.526a1.12 1.12 0 0 0-1.428-.15l-1.693 1.13c-.63.42-1.439.467-2.112.122A2.43 2.43 0 0 1 8 18V5c0-1.105.895-2 2-2h4a2 2 0 0 1 2 2v2.586a1 1 0 0 0 .293.707l1.414 1.414c.294.294.767.198.887-.198.24-.76.71-1.464 1.516-1.464H21a1 1 0 0 1 1 1v.707l-2.561.1z" /></svg>,
+    trash: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>,
+    zoom: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>,
+    fullscreen: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3" /></svg>,
+    print: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 6 2 18 2 18 9" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect x="6" y="14" width="12" height="8" /></svg>,
+    lens: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><circle cx="12" cy="12" r="3" /><path d="M3 9v6M9 3h6M9 21h6M21 9v6" /></svg>,
+    translate: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 8l6 6" /><path d="M4 14l6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1M22 22l-5-10-5 10" /><path d="M14 18h6" /></svg>,
+    find: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="9" y1="15" x2="15" y2="15" /></svg>,
+    cast: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 16v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v3" /><path d="M2 12a10 10 0 0 1 10 10" /><path d="M2 8a14 14 0 0 1 14 14" /></svg>,
+    briefcase: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg>,
+    pricing: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1v22" /><path d="M17 5H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7" /></svg>,
+    help: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>,
+    settings: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" /></svg>,
+    exit: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></svg>,
+    window: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" /></svg>,
+    incognito: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="7" cy="15" r="3" /><circle cx="17" cy="15" r="3" /><path d="M10 15h4M5 12V9a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v3H5z" /></svg>,
     empty: <span className="w-4 h-4 inline-block" />
   }
 
   const divider = <div className="h-[1px] w-full bg-[var(--border-color)] my-1" />
 
   const MenuItem = ({ icon, label, shortcut, rightIcon, onClick, disabled }) => (
-    <button 
-      onClick={() => !disabled && handleAction(onClick)} 
+    <button
+      onClick={() => !disabled && handleAction(onClick)}
       disabled={disabled}
       className={`w-full flex items-center px-4 py-1.5 text-[13px] hover:bg-[var(--bg-hover)] group transition-colors ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
@@ -1052,10 +1092,10 @@ function BrowserMenu({ onClose, onAddTab, onShowHistory, onOpenPricing }) {
 
   return (
     <div ref={menuRef} className="absolute top-[44px] right-0 w-[300px] bg-white border border-[var(--border-color)] shadow-2xl rounded-bl-xl py-1 z-50 animate-fade-in-up origin-top-right">
-      <MenuItem icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>} label="New tab" shortcut="Ctrl+T" onClick={onAddTab} />
+      <MenuItem icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" /></svg>} label="New tab" shortcut="Ctrl+T" onClick={onAddTab} />
       <MenuItem icon={icons.window} label="New window" shortcut="Ctrl+N" onClick={() => window.open(window.location.href, '_blank')} />
       <MenuItem icon={icons.incognito} label="New Incognito window" shortcut="Ctrl+Shift+N" disabled />
-      
+
       {divider}
       <ProfileMenu />
       {divider}
